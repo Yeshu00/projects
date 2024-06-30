@@ -1,0 +1,18 @@
+import string
+def encrypt_message(message,key):
+    shift=key%26
+    cipher=str.maketrans(string.ascii_lowercase,string.ascii_lowercase[shift:]+string.ascii_lowercase[:shift])
+    encrypt=message.lower().translate(cipher)
+    return encrypt
+def decrypt_message(encrypt,key):
+    shift=26-(key%26)
+    cipher=str.maketrans(string.ascii_lowercase ,string.ascii_lowercase[shift:]+string.ascii_lowercase[:shift])
+    message=encrypt.translate(cipher)
+    return message
+key=int(input("enter the key value"))
+message=input("enter the message you need encrypt") 
+encrypt=encrypt_message(message,key)
+print(encrypt)
+print(decrypt_message(encrypt,key))
+    
+    
