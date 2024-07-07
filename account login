@@ -1,0 +1,39 @@
+import string
+import hashlib
+import getpass
+import random
+c={}
+def generator(lenght:int=10):
+    action =string.ascii_letters+string.punctuation+string.digits
+    password="".join(random.choice(action) for i in range(lenght))
+    print( password)
+def create():
+    username=input("enter the name:")
+    passs=getpass.getpass("enter the password:")
+    comp=hashlib.sha256(passs.encode()).hexdigest()
+    c[username]=passs
+def login():
+    username=input("enter the name:")
+    passs=getpass.getpass("enter the password:")
+    comp=hashlib.sha256(passs.encode()).hexdigest
+    if username in c.keys() and c[username]==passs:
+        print("login succesfull")
+    else:
+        print("password is wrong or username is wrong")
+def main():
+    while True:
+        n=input("enter 1 to sign in or 2 to sign up:")
+        if n=="1":
+            login()
+        elif n=="2":
+            r=input("1 to generate password : or 0 to continue")
+            if r==0:
+                create()
+            elif r=="1":
+                generator()
+                create()
+            else:
+                print("invalid choice")
+        else:
+            break
+main()
